@@ -111,7 +111,7 @@ class UnixPipe:
 
 
     def recv(self):
-        recv_data = self.socket.recv(1024)
+        recv_data = self.socket.recv(1024) # type: ignore
         # enc_header = recv_data[:8]
         # dec_header = struct.unpack('<ii', enc_header)
         enc_data = recv_data[8:]
@@ -123,7 +123,7 @@ class UnixPipe:
         payload = json.dumps(payload).encode('utf-8')
         payload = struct.pack('<ii', op, len(payload)) + payload
 
-        self.socket.send(payload)
+        self.socket.send(payload) # type: ignore
 
     def handshake(self):
         self.send({'v': 1, 'client_id': self.app_id}, op=OP_HANDSHAKE)
@@ -140,7 +140,7 @@ class UnixPipe:
     def disconnect(self):
         try:
             self.send({}, OP_CLOSE)
-            self.socket.close()
+            self.socket.close() # type: ignore
         except Exception as e:
             print(f"Error disconnecting: {e}")
 
