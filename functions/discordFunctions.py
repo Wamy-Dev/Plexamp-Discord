@@ -65,8 +65,6 @@ class DiscordRPC():
         if not plex_data:
             return {}
         
-        # print(plex_data)
-        
         activity = {
             "state": f"{plex_data.get('artist')}",
             "details": f"{plex_data.get('title')}",
@@ -76,11 +74,11 @@ class DiscordRPC():
                 "end": int(time.time() * 1000) + (plex_data.get('duration', 0) - plex_data.get('duration_offset', 0)) if plex_data.get('duration') else None
             },
             "assets": {
-                # "large_image": "plexamp",
-                # "large_text": f"{plex_data.get('title')}",
-                # "small_image": "plexamp",
-                # "small_text": "Plexamp",
-                # "small_url": "https://plexamp.com",
+                "large_image": f"{plex_data.get('plex_url')}{plex_data.get('thumbnail')}?X-Plex-Token={plex_data.get('plex_token')}",
+                "large_text": f"{plex_data.get('album')} ({plex_data.get('album_year')})",
+                "small_image": "plexamp",
+                "small_text": "Plexamp",
+                "small_url": "https://plexamp.com",
             }
         }
         return activity

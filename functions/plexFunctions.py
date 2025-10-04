@@ -25,6 +25,7 @@ class PlexFunctions():
             title = item.get("title")
             artist = item.get("originalTitle") or item.get("grandparentTitle")
             album = item.get("parentTitle")
+            album_year = item.get("parentYear", "")
             thumbnail = item.get("thumb") or item.get("grandparentThumb")
             duration = item.get("duration")  # duration in milliseconds
             duration_offset = item.get("viewOffset")  # current position in milliseconds
@@ -37,9 +38,12 @@ class PlexFunctions():
 
             playing_media = {
                 "user": user,
+                "plex_url": self.plex_url,
+                "plex_token": self.plex_token,
                 "title": title,
                 "artist": artist,
                 "album": album,
+                "album_year": album_year,
                 "thumbnail": thumbnail,
                 "duration": duration,
                 "duration_offset": duration_offset,
