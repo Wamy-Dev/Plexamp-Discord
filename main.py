@@ -7,10 +7,11 @@ def main():
     config_file = "config.json"
     discord_app_id = loadItem(config_file, "discord_app_id")
     plex_token = loadItem(config_file, "plex_token")
-    plex_url = loadItem(config_file, "plex_url")
+    public_plex_url = loadItem(config_file, "public_plex_url")
+    private_plex_url = loadItem(config_file, "private_plex_url")
     plex_user = loadItem(config_file, "plex_user")
 
-    if not all([discord_app_id, plex_token, plex_url, plex_user]):
+    if not all([discord_app_id, plex_token, public_plex_url, private_plex_url, plex_user]):
         print("Missing configuration. Please check config.json.")
         return
 
@@ -18,7 +19,7 @@ def main():
     if not discord_rpc.setupConnection():
         return
 
-    plex_functions = PlexFunctions(plex_token, plex_url, plex_user)
+    plex_functions = PlexFunctions(plex_token, public_plex_url, private_plex_url, plex_user)
 
     try:
         while True:

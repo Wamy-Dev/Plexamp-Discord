@@ -1,9 +1,10 @@
 import httpx
 
 class PlexFunctions():
-    def __init__(self, plex_token: str, plex_url: str, plex_user: str):
+    def __init__(self, plex_token: str, public_plex_url: str, private_plex_url: str, plex_user: str):
         self.plex_token = plex_token
-        self.plex_url = plex_url
+        self.public_plex_url = public_plex_url
+        self.private_plex_url = private_plex_url
         self.plex_user = plex_user
 
     def getPlayingMedia(self, sessions: dict) -> dict:
@@ -38,7 +39,8 @@ class PlexFunctions():
 
             playing_media = {
                 "user": user,
-                "plex_url": self.plex_url,
+                "public_plex_url": self.public_plex_url,
+                "private_plex_url": self.private_plex_url,
                 "plex_token": self.plex_token,
                 "title": title,
                 "artist": artist,
@@ -58,7 +60,7 @@ class PlexFunctions():
             "X-Plex-Token": self.plex_token,
             "Accept": "application/json"
         }
-        url = f"{self.plex_url}/status/sessions"
+        url = f"{self.private_plex_url}/status/sessions"
         response = httpx.get(url, headers=headers)
         if response.status_code == 200:
             data = response.json()

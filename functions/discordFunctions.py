@@ -20,6 +20,8 @@ class Activity(Enum):
     Custom = 4
     Competing = 5
 
+# Code heavily influenced by https://github.com/Senophyx/Discord-RPC/blob/main/discordrpc/presence.py
+
 class DiscordRPC():
     def __init__(self, app_id: str):
         self.app_id = app_id
@@ -74,7 +76,7 @@ class DiscordRPC():
                 "end": int(time.time() * 1000) + (plex_data.get('duration', 0) - plex_data.get('duration_offset', 0)) if plex_data.get('duration') else None
             },
             "assets": {
-                "large_image": f"{plex_data.get('plex_url')}{plex_data.get('thumbnail')}?X-Plex-Token={plex_data.get('plex_token')}",
+                "large_image": f"{plex_data.get('public_plex_url')}{plex_data.get('thumbnail')}?X-Plex-Token={plex_data.get('plex_token')}",
                 "large_text": f"{plex_data.get('album')} ({plex_data.get('album_year')})",
                 "small_image": "plexamp",
                 "small_text": "Plexamp",

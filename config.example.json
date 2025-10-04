@@ -1,6 +1,7 @@
 {
     "plex_token": "XXXXXXXXXXXXXXXXXXXXXXXX",
-    "plex_url": "https://XXXXXXXXXXXXXXXXXXXXXXXX.plex.direct:32400",
+    "private_plex_url": "https://XXXXXXXXXXXXXXXXXXXXXXXX.XXXXXXXXXXXXXXXXXXXXXXXX.plex.direct:32400",
+    "public_plex_url": "https://plex.XXXXXXXXXXXXXXXXXXXXXXXX.XXXXXXXXXXXXXXXXXXXXXXXX", 
     "plex_user": "XXXXXXXXXXXXXXXXXXXXXXXX",
     "discord_app_id": "XXXXXXXXXXXXXXXXXXXXXXXX"
 }
