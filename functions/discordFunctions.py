@@ -97,6 +97,7 @@ class UnixPipe:
 
         for i in range(10):
             path = base_path.format(i)
+            print(f"Trying to connect to {path}")
 
             try:
                 self.socket.connect(path)
