@@ -78,9 +78,9 @@ class DiscordRPC():
             "assets": {
                 "large_image": f"{plex_data.get('public_plex_url')}{plex_data.get('thumbnail')}?X-Plex-Token={plex_data.get('plex_token')}",
                 "large_text": f"{plex_data.get('album')} ({plex_data.get('album_year')})",
-                "small_image": "plexamp",
-                "small_text": "Plexamp",
-                "small_url": "https://plexamp.com",
+                # "small_image": "plexamp",
+                "small_text": f"{plex_data.get('artist')}",
+                # "small_url": "https://plexamp.com",
             }
         }
         return activity
