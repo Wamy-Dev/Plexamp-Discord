@@ -4,7 +4,7 @@ from functions.configFunctions import loadItem
 import time
 
 def main():
-    config_file = "config.json"
+    config_file = "config/config.json"
     discord_app_id = loadItem(config_file, "discord_app_id")
     plex_token = loadItem(config_file, "plex_token")
     public_plex_url = loadItem(config_file, "public_plex_url")

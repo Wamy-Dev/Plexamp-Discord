@@ -1,0 +1,24 @@
+services:
+  kasmcord:
+    container_name: kasmcord
+    image: kasmweb/discord:1.14.0
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:6901:6901
+    shm_size: 512m
+    environment:
+      VNC_PW: password
+      XDG_RUNTIME_DIR: /run/user/1000
+    volumes:
+      - ./kasmcord:/run/user/1000
+    user: "0"
+    entrypoint: sh -c "chmod 700 /run/user/1000 && chown -R kasm-user:kasm-user /run/user/1000 && su kasm-user -c '/dockerstartup/kasm_default_profile.sh /dockerstartup/vnc_startup.sh /dockerstartup/kasm_startup.sh'"
+  discord-plexamp:
+    container_name: discord-plexamp
+    image: ghcr.io/wamy-dev/plexamp-discord:main
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+      - ./kasmcord:/run/app:ro
+    depends_on:
+      - kasmcord

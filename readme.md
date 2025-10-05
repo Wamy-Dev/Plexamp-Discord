@@ -23,6 +23,29 @@ For service, choose type, `HTTPS`, and point URL to your internal IP of your Ple
 
 Under "Additional application settings" go to TLS and enable `No TLS Verify`. This is necessary as Plex runs on HTTPS, but doesn't have a signed certificate (unless you explicitly added one).
 
+It should look like the following:
+
+![cloudflare_tunnel](/previews/cloudflare_tunnel.png)
+
+## Securing
+
+Since we use the "X-Plex-Token" to retrieve metadata publicly, we need to make sure the Plex server is locked down properly to prevent unauthorized access. As mentioned, we only want to expose the `library/metadata` path, but since there are also other calls that can affect the Plex server negatively in this namespace, we need to make sure that only GET, OPTIONS and HEAD requests are allowed through. If this isn't done properly, The Plex URL and X-Plex-Token can be used to delete content that you play by deriving the URL and library ID from the public URL we expose to Discord. This would only be a deliberate attack, but we want to prevent it either way.
+
+If using Cloudflare, set up a custom security rule, by going to Security -> Security Rules and click the button labeled "Create rule". Name this rule whatever you want, but we need to enter the rule as follows:
+
+When incoming requests match...
+
+Request method, does not equal GET, AND
+Request method, does not equal HEAD, AND
+Request method, does not equal OPTIONS, AND
+Hostname, equals (previously set public domain name, mine is plex.domain.com)
+
+Then take action, Block.
+
+It should look like the following:
+
+![cloudflare_security_rule](/previews/cloudflare_security_rule.png)
+
 ## Running
 
 There are 2 ways of running this service. One way is locally on your device, it will start and stop whenever you boot up your computer. The other way is running this in a Docker compose using [kasmweb/discord](https://hub.docker.com/r/kasmweb/discord) Docker container, to connect the 2 together.

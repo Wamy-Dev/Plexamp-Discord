@@ -1,0 +1,8 @@
+services:
+  discord-plexamp:
+    container_name: discord-plexamp
+    image: ghcr.io/wamy-dev/plexamp-discord:main
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+      - /run/user/1000:/run/app
