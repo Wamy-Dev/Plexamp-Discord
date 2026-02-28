@@ -55,6 +55,16 @@ There are 2 ways of running this service. One way is locally on your device, it 
 
 This application is only compatible with Unix devices. Windows has a different socket communication process that is not built into this service. If running on Windows, use the Docker method of installation and running.
 
+
+## Troubleshooting
+
+#### Failed to complete handshake with Discord
+
+If you are receiving this error, it is likely due to you missing the proper permissions on your Discord account. Make sure this option below is enabled.
+
+<img width="782" height="183" alt="Screenshot 2026-02-27 at 9 22 52 PM" src="https://github.com/user-attachments/assets/9f37d5cd-4d72-42ab-9c34-a7a24fb9a375" />
+
+
 ## Previews
 
 ![preview_1](/previews/preview_1.png)
