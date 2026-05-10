@@ -2,6 +2,11 @@
 
 ![full_preview](/previews/full_preview.png)
 
+In my opinion, this is the *best* Plexamp Discord RPC solution for the following reasons:
+- Images don't require third party service. Other solutions force you to use lastfm (to lookup the album and serve the image, in my case I listen to a lot of things *not* found on this and similar platforms, so this media would simply be missing), or imgur/other filesharing site (to upload album art to the internet to be served to Discord, which adds delays, and can add up to a lot of wasted upload bandwidth, which is limited in my situation). With this solution, images are shared quickly and securely, and is by far the most simple way of going about this problem.
+- Can be used on a server. This means I can listen on my phone, or in my car, or on my homepod, and no matter where I am, the status can still be shared through the RPC (as long as the Plex server, and Discord are running). This flexibility is unparalleled.
+- Recently developed, professionally made, and maintained. Other options are very old, may not work, or have long-standing issues.
+
 ## Setup
 
 1. First, you will need to proxy your Plex server. For this, I am using Cloudflare tunnels (only for API routes, explained below), as this provides easy setup with little to no configuration. Read below on how to setup Cloudflare Tunnels for this purpose. This is necessary for images, as they need to be publicly accessible.
