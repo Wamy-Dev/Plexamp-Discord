@@ -51,6 +51,8 @@ class DiscordRPC():
             print("Not connected to Discord RPC")
             return False
         
+        # https://docs.discord.com/developers/topics/rpc#set_activity
+
         payload = {
             "cmd": "SET_ACTIVITY",
             "args": {
@@ -67,10 +69,12 @@ class DiscordRPC():
         if not plex_data:
             return {}
         
+        # https://docs.discord.com/developers/events/gateway-events#activity-object
         activity = {
             "state": f"{plex_data.get('artist')}",
             "details": f"{plex_data.get('title')}",
-            "type": 2,
+            "type": 2, # https://docs.discord.com/developers/events/gateway-events#activity-object-activity-types
+            "status_display_type": 1, # https://docs.discord.com/developers/events/gateway-events#activity-object-status-display-types, I chose 2 here because its the same as the official Spotify integration, but you can change it to 0 ("Listening to Plexamp") or 2 "Listening to {song name}" if you want
             "timestamps": {
                 "start": int(time.time() * 1000) - plex_data.get('duration_offset', 0),
                 "end": int(time.time() * 1000) + (plex_data.get('duration', 0) - plex_data.get('duration_offset', 0)) if plex_data.get('duration') else None
